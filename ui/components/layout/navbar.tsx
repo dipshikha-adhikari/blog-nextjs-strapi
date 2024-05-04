@@ -7,6 +7,9 @@ import { md } from "@/lib/markdown";
 const Navbar = () => {
   const { user, isLoading } = useAuth();
   console.log(user);
+ 
+ 
+ 
   return (
     <div className="flex justify-between items-center p-10 bg-green-600 text-white">
       <Link href={"/"}>BMDB</Link>
