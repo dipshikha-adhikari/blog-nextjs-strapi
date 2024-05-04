@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comments",
+  "info": {
+    "singularName": "comment",
+    "pluralName": "comments",
+    "displayName": "Comment"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "text"
+    },
+    "authorId": {
+      "type": "uid"
+    },
+    "postId": {
+      "type": "uid"
+    },
+    "parentCommentId": {
+      "type": "uid"
+    }
+  }
+}
