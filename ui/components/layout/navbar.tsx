@@ -2,6 +2,7 @@
 import { useAuth } from "@/hooks/use-auth";
 import Link from "next/link";
 import React from "react";
+import { md } from "@/lib/markdown";
 
 const Navbar = () => {
   const { user, isLoading } = useAuth();
