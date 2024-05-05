@@ -17,7 +17,7 @@ const Login = () => {
 
     toast.promise(login(formDataObject), {
       loading: "Logging",
-      success: (data) => {
+      success: () => {
         router.push("/");
         return "success";
       },

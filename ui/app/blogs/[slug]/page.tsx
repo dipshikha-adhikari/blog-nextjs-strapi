@@ -1,5 +1,4 @@
 "use client";
-import Categories from "@/components/layout/categories";
 import { fetcher } from "@/lib/api";
 import { md } from "@/lib/markdown";
 import { Post } from "@/types";
@@ -28,7 +27,7 @@ const Page = () => {
   useEffect(() => {
     const fetchPost = async () => {
       const response = await fetcher(
-        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/posts?filters[slug][$eq]=${slug}&&populate=*`
+        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/posts?filters[slug][$eq]=${slug}&&populate=*`,
       );
 
       setPost(response.data[0]);
@@ -39,7 +38,7 @@ const Page = () => {
   useEffect(() => {
     if (post) {
       const { url, width, height } = imageReducer(
-        post.attributes.featuredimage?.data?.attributes
+        post.attributes.featuredimage?.data?.attributes,
       );
       setImageData((prev) => ({ ...prev, url, width, height }));
     }
@@ -74,7 +73,16 @@ const Page = () => {
           }}
         />
       </div>
-      <Categories />
+      <section>
+        <ul>
+          <li>Lorem ipsum dolor sit.</li>
+          <li>Lorem ipsum dolor sit.</li>
+          <li>Lorem ipsum dolor sit.</li>
+          <li>Lorem ipsum dolor sit.</li>
+          <li>Lorem ipsum dolor sit.</li>
+          <li>Lorem ipsum dolor sit.</li>
+        </ul>
+      </section>
     </div>
   );
 };

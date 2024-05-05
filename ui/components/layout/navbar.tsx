@@ -1,17 +1,36 @@
 "use client";
-import { useAuth } from "@/hooks/use-auth";
 import Link from "next/link";
-import React from "react";
+import ThemeButton from "../elements/theme-button";
+import Logo from "./logo";
+import Menu from "./menubar";
 
 const Navbar = () => {
-  const { user, isLoading } = useAuth();
-  console.log(user);
-
   return (
-    <div className="flex justify-between items-center p-10 bg-green-600 text-white">
-      <Link href={"/"}>BMDB</Link>
-      <ul className="flex gap-10 items-center">
-        <Link href={"/films"}>Films</Link>
+    <nav className="sticky top-0 bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(28,28,29,0.5)] shadow-sm backdrop-blur-sm p-sm md:px-md xl:px-xl dark:text-white text-black">
+      <div className="flex max-w-[1400px] mx-auto justify-between items-center ">
+        <Logo />
+        <MobileNavbar />
+        <DesktopNavbar />
+      </div>
+    </nav>
+  );
+};
+
+const MobileNavbar = () => {
+  return (
+    <div className="md:hidden flex items-center gap-sm">
+      <ThemeButton />
+      <Menu />
+    </div>
+  );
+};
+
+const DesktopNavbar = ({ user }: any) => {
+  return (
+    <div className="hidden md:flex items-center gap-sm">
+      <ThemeButton />
+      <ul className="flex gap-sm items-center">
+        <Link href={"/blogs"}>Blogs</Link>
         {user ? (
           <Link href={"/user"}>Profile</Link>
         ) : (
