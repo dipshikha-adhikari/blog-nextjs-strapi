@@ -1,30 +1,55 @@
-import { BlocksContent } from "@strapi/blocks-react-renderer"
-import { ReactNode } from "react"
-
 export interface Post {
-    id: string
-    attributes: {
-        title: string
-        slug: string
-        publishedAt: Date
-        content: any
-        author: string
-        description: string
-        featuredimage: {
+  id: string;
+  attributes: {
+    title: string;
+    slug: string;
+    publishedAt: Date;
+    content: any;
+    description: string;
+    author: {
+      data: {
+        id: number;
+        attributes: {
+          username: string;
+          email: string;
+          bio: string;
+          createdAt: Date;
+          avatar: {
             data: {
-                attributes: {
-                    caption: string | null,
-                    width: number,
-                    height: number,
-                    formats: {
-                        thumbnail: {
-                            url: string
-                        }
-                    }
-                }
-            }
-        }
-    }
+              attributes: {
+                formats: {
+                  thumbnail: {
+                    url: string;
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+    featuredimage: {
+      data: {
+        attributes: {
+          caption: string | null;
+          width: number;
+          height: number;
+          formats: {
+            thumbnail: {
+              url: string;
+            };
+          };
+        };
+      };
+    };
+    category: Category;
+  };
 }
 
-
+interface Category {
+  id: 1;
+  attributes: {
+    name: string;
+    parentCategory: Category;
+  };
+}

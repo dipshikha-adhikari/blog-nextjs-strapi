@@ -20,7 +20,7 @@ const config = {
     extend: {
       colors: {
         black: {
-          light: "#111827",
+          light: "#0a0a0a",
           default: "#09090b",
         },
 
@@ -64,6 +64,7 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       padding: {
+        xs: "10px",
         sm: "1rem",
         md: "2rem",
         xl: "3rem",

@@ -9,10 +9,7 @@ const Footer = () => {
         viewBox="0 0 1440 320"
         className="  relative bottom-[-10px]  fill-gray-200 z-[-50] dark:fill-black-light "
       >
-        <path
-          fill-opacity="1"
-          d="M0,320L80,288C160,256,320,192,480,186.7C640,181,800,235,960,240C1120,245,1280,203,1360,181.3L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
-        ></path>
+        <path d="M0,320L80,288C160,256,320,192,480,186.7C640,181,800,235,960,240C1120,245,1280,203,1360,181.3L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
       </svg>
 
       <main className="max-w-[1400px]  bg-gray-200  dark:bg-black-light dark:text-white   grid gap-5 p-sm md:px-md xl:px-xl  mx-auto w-full ">

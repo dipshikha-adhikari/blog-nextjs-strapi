@@ -10,7 +10,11 @@ const ThemeButton = () => {
       <button
         onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
       >
-        {theme === "light" ? <RiMoonLine /> : <RiSunLine />}
+        {theme === "light" ? (
+          <RiMoonLine fontSize={30} />
+        ) : (
+          <RiSunLine fontSize={30} />
+        )}
       </button>
     </div>
   );

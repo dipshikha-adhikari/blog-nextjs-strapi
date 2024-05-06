@@ -1,7 +1,5 @@
-import React from "react";
-
-const Categories = () => {
-  return <div>Categories</div>;
+const Categories = async () => {
+  return <div></div>;
 };
 
 export default Categories;
