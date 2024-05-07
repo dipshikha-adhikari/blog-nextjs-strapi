@@ -21,7 +21,7 @@ const PostComponent = () => {
     getPost();
   }, [slug]);
 
-  return <p>Error</p>;
+  return <p>On progress</p>;
 };
 
 export default PostComponent;
