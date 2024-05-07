@@ -4,7 +4,8 @@
   "info": {
     "singularName": "comment",
     "pluralName": "comments",
-    "displayName": "Comment"
+    "displayName": "Comment",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,14 +15,20 @@
     "content": {
       "type": "text"
     },
-    "authorId": {
-      "type": "uid"
+    "parentComment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::comment.comment"
     },
-    "postId": {
-      "type": "uid"
+    "author": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     },
-    "parentCommentId": {
-      "type": "uid"
+    "post": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::post.post"
     }
   }
 }
