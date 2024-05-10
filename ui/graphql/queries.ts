@@ -146,3 +146,62 @@ export const GET_CATEGORY = gql`
     }
   }
 `;
+
+export const getComments = gql`
+  query getComments($postId: ID!) {
+    comments(filters: { post: { id: { eq: $postId } } }) {
+      data {
+        id
+        attributes {
+          content
+          createdAt
+          author {
+            data {
+              id
+              attributes {
+                username
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const getParentComments = gql`
+  query getComments($parentId: ID!) {
+    comments(filters: { parentComment: { id: { eq: $parentId } } }) {
+      data {
+        id
+        attributes {
+          parentComment {
+            data {
+              id
+              attributes {
+                content
+              }
+            }
+          }
+          content
+          createdAt
+          author {
+            data {
+              id
+              attributes {
+                username
+                avatar {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

@@ -6,31 +6,11 @@ export interface Post {
     publishedAt: Date;
     content: any;
     description: string;
-    author: {
-      data: {
-        id: number;
-        attributes: {
-          username: string;
-          email: string;
-          bio: string;
-          createdAt: Date;
-          avatar: {
-            data: {
-              attributes: {
-                formats: {
-                  thumbnail: {
-                    url: string;
-                  };
-                };
-              };
-            };
-          };
-        };
-      };
-    };
+    author: Author;
     featuredimage: {
       data: {
         attributes: {
+          url: string;
           caption: string | null;
           width: number;
           height: number;
@@ -46,10 +26,35 @@ export interface Post {
   };
 }
 
+interface Author {
+  data: {
+    id: number;
+    attributes: {
+      username: string;
+      email: string;
+      bio: string;
+      createdAt: Date;
+      avatar: {
+        data: {
+          attributes: {
+            formats: {
+              thumbnail: {
+                url: string;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+}
+
 interface Category {
-  id: 1;
-  attributes: {
-    name: string;
-    parentCategory: Category;
+  data: {
+    id: 1;
+    attributes: {
+      name: string;
+      parentCategory: Category;
+    };
   };
 }

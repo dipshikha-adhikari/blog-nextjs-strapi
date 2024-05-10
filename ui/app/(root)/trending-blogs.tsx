@@ -11,6 +11,8 @@ const TrendingBlogs = async () => {
     query: postsQuery,
   });
 
+  if (!data.posts) return <div className="text-center">Error</div>;
+
   return (
     <div className="grid gap-md  md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] ">
       {data.posts.data.map((r: Post) => {
