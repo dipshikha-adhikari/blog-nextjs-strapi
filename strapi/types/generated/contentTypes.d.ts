@@ -426,6 +426,7 @@ export interface ApiCommentComment extends Schema.CollectionType {
       'oneToOne',
       'api::post.post'
     >;
+    created: Attribute.DateTime & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

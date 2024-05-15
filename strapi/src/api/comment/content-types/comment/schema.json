@@ -29,6 +29,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::post.post"
+    },
+    "created": {
+      "type": "datetime",
+      "required": true
     }
   }
 }
