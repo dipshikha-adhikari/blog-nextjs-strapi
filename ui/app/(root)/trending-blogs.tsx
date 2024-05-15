@@ -1,21 +1,22 @@
+"use server";
 import { postsQuery } from "@/graphql/queries";
 import { client } from "@/lib/apollo-client";
-import { Post } from "@/types";
+import { IPost } from "@/types";
 import { imageReducer } from "@/utils/image-reducer";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 
 const TrendingBlogs = async () => {
-  const { data } = await client.query({
+  const { data, error }: any = await client.query({
     query: postsQuery,
   });
 
-  if (!data.posts) return <div className="text-center">Error</div>;
+  if (!data?.posts && error) return <div className="text-center">Error</div>;
 
   return (
     <div className="grid gap-md  md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] ">
-      {data.posts.data.map((r: Post) => {
+      {data.posts.data.map((r: IPost) => {
         const imageSrc =
           r.attributes.author.data.attributes.avatar.data.attributes.formats
             .thumbnail.url;
@@ -39,14 +40,14 @@ const TrendingBlogs = async () => {
             </Link>
 
             <Link
-              href={`/blogs/${r.attributes.slug}`}
+              href={`/${r.attributes.category.data.attributes.name}/${r.attributes.slug}`}
               key={r.id}
               className="  grid    w-full  gap-xs  "
             >
               <div className="flex gap-xs items-center"></div>
               <p className="font-bold ">{r.attributes.title}</p>
               <p>{r.attributes.description.slice(0, 70)}...</p>
-              <p>{moment(r.attributes.publishedAt).format("ll")}</p>
+              <p>{moment(r.attributes.createdAt).format("ll")}</p>
             </Link>
           </div>
         );

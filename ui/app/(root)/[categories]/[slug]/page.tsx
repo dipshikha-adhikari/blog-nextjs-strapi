@@ -1,36 +1,42 @@
 "use client";
-import AuthorImage from "@/components/elements/author-image";
 import Content from "@/components/layout/content";
+import ErrorPage from "@/components/pages/error-page";
 import { postQuery } from "@/graphql/queries";
-import { client } from "@/lib/apollo-client";
 import { md } from "@/lib/markdown";
-import { Post } from "@/types";
+import { IPost } from "@/types";
 import { imageReducer } from "@/utils/image-reducer";
-import moment from "moment";
+import { useSuspenseQuery } from "@apollo/client";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import xss from "xss";
+import Author from "./author";
+import Comments from "./comments";
 
 const PostComponent = () => {
   const params = useParams();
   const slug = params.slug;
-  const [post, setPost] = useState<Post>();
   const [coverImg, setCoverImg] = useState<string | null>("");
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const getPost = async () => {
-      const { data } = await client.query({
-        query: postQuery,
-        variables: {
-          slug,
-        },
-      });
-      setPost(data.posts.data[0]);
-    };
-    getPost();
-  }, [slug]);
+    window.scrollTo(0, 0);
+    setIsClient(true);
+  }, []);
+
+  const {
+    data: {
+      posts: {
+        data: [postData],
+      },
+    },
+    error,
+  }: any = useSuspenseQuery(postQuery, {
+    variables: { slug },
+  });
+
+  const post: IPost = postData;
 
   useEffect(() => {
     if (post) {
@@ -41,7 +47,9 @@ const PostComponent = () => {
     }
   }, [post]);
 
-  if (!post) return <div></div>;
+  if (!isClient) return <Content>Loading...</Content>;
+
+  if (error) return <ErrorPage />;
 
   return (
     <Content
@@ -56,20 +64,7 @@ const PostComponent = () => {
       <section className="grid mx-auto gap-md">
         <p className="text-4xl font-semibold">{post.attributes.title}</p>
         <Link href={"/author"} className="flex items-center gap-sm">
-          <AuthorImage author={post.attributes.author} />
-          <div className="">
-            <p className="font-semibold">
-              {post.attributes.author.data.attributes.username}
-            </p>
-            <div className="flex gap-xs items-center">
-              <p className="text-sm  text-slate-600 dark:text-slate-400 z-[-1]">
-                Published at {moment(post.attributes.publishedAt).format("ll")}
-              </p>
-              <Link href={""} className="font-bold text-sm">
-                # {post.attributes.category.data.attributes.name}
-              </Link>
-            </div>
-          </div>
+          <Author post={post} />
         </Link>
       </section>
       <section className="grid gap-sm">
@@ -94,6 +89,7 @@ const PostComponent = () => {
           }}
         />
       </section>
+      <Comments postId={post.id} />
     </Content>
   );
 };

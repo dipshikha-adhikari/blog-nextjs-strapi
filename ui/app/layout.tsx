@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import React from "react";
-import { Toaster } from "react-hot-toast";
-import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import Navbar from "@/components/layout/navbar";
+import { Toaster } from "@/components/ui/toaster";
+import { ApolloWrapper } from "@/lib/apollo-wrapper";
+import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
+import { Inter } from "next/font/google";
+import React from "react";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,13 +23,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="class" enableSystem>
-          <Toaster position="top-center" reverseOrder={false} />
-          <Navbar />
+        <ApolloWrapper>
+          <ThemeProvider attribute="class" defaultTheme="class" enableSystem>
+            <Toaster />
+            <Navbar />
 
-          <div className="min-h-[80vh] max-w-[1400px] mx-auto">{children}</div>
-          <Footer />
-        </ThemeProvider>
+            <div className="min-h-[80vh] max-w-[1400px] mx-auto">
+              {children}
+            </div>
+            <Footer />
+          </ThemeProvider>
+        </ApolloWrapper>
       </body>
     </html>
   );

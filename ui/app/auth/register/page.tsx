@@ -2,9 +2,9 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 import Cookies from "js-cookie";
-import { LoginForm } from "@/components/auth/login";
 import Content from "@/components/layout/content";
 import Link from "next/link";
+import { RegistrationForm } from "@/components/auth/register";
 
 const Page = () => {
   const user = Cookies.get("username");
@@ -16,16 +16,16 @@ const Page = () => {
     <Content
       style={{
         "--max-width": "500px",
-        boxShadow: "var(--shadow-sm)",
+        border: "1px solid var(--border)",
         margin: "1rem auto",
       }}
     >
-      <header className="pb-sm text-center">Login to continue</header>
-      <LoginForm />
+      <header className="pb-sm text-center uppercase">Register</header>
+      <RegistrationForm />
       <div className="py-sm flex gap-sm items-center">
-        <p>Don't have an account?</p>
-        <Link href={"/auth/register"} className="text-secondary">
-          Register
+        <p>Already have an account?</p>
+        <Link href={"/auth/login"} className="text-secondary">
+          Login
         </Link>
       </div>
     </Content>

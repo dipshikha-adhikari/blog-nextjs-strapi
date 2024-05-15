@@ -2,13 +2,22 @@
 import { fetcher } from "@/lib/api";
 import { cookies } from "next/headers";
 
-export const login = async (data: { identifier: string; password: string }) => {
+export const login = async ({
+  identifier,
+  password,
+}: {
+  identifier: string;
+  password: string;
+}) => {
   try {
     const response = await fetcher(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/auth/local`,
+      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/auth/local`,
       {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          identifier,
+          password,
+        }),
         headers: {
           "Content-type": "application/json",
         },
@@ -16,7 +25,7 @@ export const login = async (data: { identifier: string; password: string }) => {
     );
 
     cookies().set("id", response.user.id);
-    cookies().set("username", response.user.username);
+    cookies().set("identifier", response.user.username);
     cookies().set("jwt", response.jwt);
   } catch (err) {
     console.log(err);

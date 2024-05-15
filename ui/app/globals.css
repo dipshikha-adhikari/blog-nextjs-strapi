@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: rgb(225, 224, 224);
-    --foreground: black;
+    --background: rgb(249, 248, 248);
+    --foreground: rgb(0, 0, 0);
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -13,10 +13,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: black;
+    --primary-foreground: white;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: rgb(3, 119, 55);
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
@@ -25,19 +25,20 @@
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: rgba(207, 10, 10, 0.822);
+    --destructive-foreground: white;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --border: rgb(207, 207, 207);
+    --input: rgb(239, 243, 239);
+    --shadow-sm: 2px 8px 20px rgba(91, 91, 91, 0.198);
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: #202020;
-    --foreground: rgb(216, 216, 216);
+    --background: #1b1b1b;
+    --foreground: rgb(243, 242, 242);
 
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
@@ -45,10 +46,10 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: white;
+    --primary-foreground: black;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: rgb(6, 226, 226);
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
@@ -57,11 +58,11 @@
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --destructive: rgb(241, 88, 88);
+    --destructive-foreground: white;
+    --shadow-sm: 2px 4px 20px rgba(116, 116, 116, 0.198);
+    --border: rgb(67, 67, 67);
+    --input: rgb(36, 36, 36);
     --ring: 212.7 26.8% 83.9%;
   }
 }

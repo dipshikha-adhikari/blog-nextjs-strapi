@@ -1,12 +1,12 @@
-export interface Post {
+export interface IPost {
   id: string;
   attributes: {
     title: string;
     slug: string;
-    publishedAt: Date;
+    createdAt: Date;
     content: any;
     description: string;
-    author: Author;
+    author: IAuthor;
     featuredimage: {
       data: {
         attributes: {
@@ -26,9 +26,9 @@ export interface Post {
   };
 }
 
-interface Author {
+interface IAuthor {
   data: {
-    id: number;
+    id: string;
     attributes: {
       username: string;
       email: string;
@@ -37,6 +37,7 @@ interface Author {
       avatar: {
         data: {
           attributes: {
+            url: string;
             formats: {
               thumbnail: {
                 url: string;
@@ -56,5 +57,30 @@ interface Category {
       name: string;
       parentCategory: Category;
     };
+  };
+}
+
+export interface IComment {
+  id: string;
+  attributes: {
+    content: string;
+    createdAt: Date;
+    author: IAuthor;
+    parentComment: {
+      data: {
+        id: string;
+      };
+    };
+    post: {
+      data: {
+        id: string;
+      };
+    };
+  };
+}
+
+export interface ICreateComment {
+  createComment: {
+    data: IComment;
   };
 }

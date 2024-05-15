@@ -81,6 +81,7 @@ export const postQuery = gql`
                 avatar {
                   data {
                     attributes {
+                      url
                       formats
                     }
                   }
@@ -140,26 +141,53 @@ export const GET_CATEGORY = gql`
           updatedAt
           publishedAt
         }
-
-        # Include any other fields you need
       }
     }
   }
 `;
 
-export const getComments = gql`
-  query getComments($postId: ID!) {
-    comments(filters: { post: { id: { eq: $postId } } }) {
+export const commentsQuery = gql`
+  query getComments($postId: ID!, $parentId: ID!) {
+    comments(
+      sort: "createdAt:desc"
+      filters: {
+        post: { id: { eq: $postId } }
+        parentComment: { id: { eq: $parentId } }
+      }
+    ) {
       data {
         id
         attributes {
           content
           createdAt
+          post {
+            data {
+              id
+            }
+          }
+          parentComment {
+            data {
+              id
+              attributes {
+                content
+              }
+            }
+          }
           author {
             data {
               id
               attributes {
                 username
+                email
+                bio
+                avatar {
+                  data {
+                    attributes {
+                      url
+                      formats
+                    }
+                  }
+                }
               }
             }
           }
@@ -169,18 +197,28 @@ export const getComments = gql`
   }
 `;
 
-export const getParentComments = gql`
-  query getComments($parentId: ID!) {
-    comments(filters: { parentComment: { id: { eq: $parentId } } }) {
+export const parentCommentsQuery = gql`
+  query getComments($postId: ID!) {
+    comments(
+      sort: "createdAt:desc"
+      filters: {
+        and: [
+          { post: { id: { eq: $postId } } }
+          { parentComment: { id: { eq: null } } }
+        ]
+      }
+    ) {
       data {
         id
         attributes {
           parentComment {
             data {
               id
-              attributes {
-                content
-              }
+            }
+          }
+          post {
+            data {
+              id
             }
           }
           content

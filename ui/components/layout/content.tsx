@@ -16,6 +16,7 @@ interface ContentProps {
 const Content = ({ children, style }: ContentProps) => {
   const { theme } = useTheme();
   const maxWidth = style?.["--max-width"] || "1400px";
+
   const bg =
     theme === "dark" ? "var(--dark-background)" : "var(--light-background)";
   return (

@@ -18,7 +18,7 @@ const Page = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio,
               rem?
             </p>
-            <button className="bg-primary text-white dark:text-black-default p-xs rounded-sm">
+            <button className="bg-primary text-primary-foreground  p-xs rounded-sm">
               Start fucking
             </button>
           </aside>
