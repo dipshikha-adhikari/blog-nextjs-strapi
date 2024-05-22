@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import Cookies from "js-cookie";
 import { LoginForm } from "@/components/auth/login";
-import Content from "@/components/layout/content";
 import Link from "next/link";
 
 const Page = () => {
@@ -13,13 +12,7 @@ const Page = () => {
     router.push("/");
   }
   return (
-    <Content
-      style={{
-        "--max-width": "500px",
-        boxShadow: "var(--shadow-sm)",
-        margin: "1rem auto",
-      }}
-    >
+    <div>
       <header className="pb-sm text-center">Login to continue</header>
       <LoginForm />
       <div className="py-sm flex gap-sm items-center">
@@ -28,7 +21,7 @@ const Page = () => {
           Register
         </Link>
       </div>
-    </Content>
+    </div>
   );
 };
 

@@ -7,6 +7,20 @@ export interface IPost {
     content: any;
     description: string;
     author: IAuthor;
+    post_like: {
+      data: {
+        attributes: {
+          users: {
+            data: {
+              id: string;
+              attributes: {
+                username;
+              };
+            }[];
+          };
+        };
+      };
+    };
     featuredimage: {
       data: {
         attributes: {
@@ -22,7 +36,60 @@ export interface IPost {
         };
       };
     };
-    category: Category;
+    category: {
+      data: ICategory;
+    };
+  };
+}
+
+interface IFeaturedPosts {
+  featureds: {
+    id;
+    data: {
+      id: string;
+      attributes: {
+        post: {
+          data: IFeaturedPost;
+        };
+      };
+    }[];
+  };
+}
+
+interface IFeaturedPost {
+  id: string;
+  attributes: {
+    description: string;
+    title: string;
+    slug: string;
+    content: string;
+    createdAt: Date;
+    featuredimage: {
+      data: {
+        attributes: {
+          url: string;
+        };
+      };
+    };
+    category: {
+      data: ICategory;
+    };
+  };
+}
+
+interface ICategories {
+  categories: {
+    data: ICategory[];
+  };
+}
+
+interface ICategory {
+  id: string;
+  attributes: {
+    name: string;
+    parentCategory: {
+      data: ICategory;
+    };
   };
 }
 
@@ -50,16 +117,6 @@ interface IAuthor {
   };
 }
 
-interface Category {
-  data: {
-    id: 1;
-    attributes: {
-      name: string;
-      parentCategory: Category;
-    };
-  };
-}
-
 export interface IComment {
   id: string;
   attributes: {
@@ -76,11 +133,46 @@ export interface IComment {
         id: string;
       };
     };
+    comment_like: {
+      data: {
+        attributes: {
+          users: {
+            data: {
+              id: string;
+              attributes: {
+                username: string;
+              };
+            }[];
+          };
+        };
+      };
+    };
   };
 }
 
 export interface ICreateComment {
   createComment: {
     data: IComment;
+  };
+}
+
+export interface ILikes {
+  id: string;
+  attributes: {
+    post?: {
+      data: {
+        id: string;
+      };
+    };
+    comment?: {
+      data: {
+        id: string;
+      };
+    };
+    user: {
+      data: {
+        id: string;
+      };
+    };
   };
 }

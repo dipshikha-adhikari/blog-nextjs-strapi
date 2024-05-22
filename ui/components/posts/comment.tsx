@@ -1,19 +1,23 @@
-import CommentBox from "@/app/(root)/[categories]/[slug]/comment-box";
+import CommentBox from "@/components/posts/comment-box";
 import { commentsQuery } from "@/graphql/queries";
 import { useAuth } from "@/hooks/use-auth";
+import { useLikes } from "@/hooks/use-likes";
 import { IComment } from "@/types";
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import { useState } from "react";
-import { FcLike } from "react-icons/fc";
-import { MdOutlineQuickreply } from "react-icons/md";
+import { BiLike, BiSolidLike } from "react-icons/bi";
+import { LiaCommentAlt } from "react-icons/lia";
 import Author from "./author";
 import OptionsMenu from "./options-menu";
 
 const Comment = ({ comment, refetch }: { comment: IComment; refetch: any }) => {
   const [isTextareaOpen, setIsTextareaOpen] = useState(false);
   const [mutationType, setMutationType] = useState("");
-
   const { user } = useAuth();
+  const { isCommentLiked, handleCommentLike } = useLikes(
+    user?.userId,
+    comment.attributes.comment_like,
+  );
   // Fetch comments with parent Id, means fetch replies of each comment until parentId is empty
   const { data }: any = useSuspenseQuery(commentsQuery, {
     variables: {
@@ -29,14 +33,25 @@ const Comment = ({ comment, refetch }: { comment: IComment; refetch: any }) => {
       <Author comment={comment} />
       <p className="pl-md  break-all">{comment?.attributes?.content}</p>
       <div className="pl-md  flex gap-sm items-center">
-        <MdOutlineQuickreply
-          className="text-primary cursor-pointer"
+        <LiaCommentAlt
+          className="text-primary text-xl  cursor-pointer"
           onClick={() => {
             setIsTextareaOpen(true);
             setMutationType("create");
           }}
         />
-        <FcLike className="text-xl cursor-pointer" />
+        <p className="flex items-center gap-1" onClick={handleCommentLike}>
+          {" "}
+          {isCommentLiked ? (
+            <BiSolidLike className="text-lg cursor-pointer" />
+          ) : (
+            <BiLike className="text-lg cursor-pointer" />
+          )}
+          {
+            comment?.attributes?.comment_like?.data?.attributes?.users?.data
+              ?.length
+          }
+        </p>
         {user?.userId &&
           comment?.attributes?.author?.data?.id === user?.userId && (
             <OptionsMenu

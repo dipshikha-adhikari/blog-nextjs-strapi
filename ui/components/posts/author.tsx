@@ -4,7 +4,6 @@ import moment from "moment";
 
 const Author = ({ comment, post }: { comment?: IComment; post?: IPost }) => {
   const time = post?.attributes.createdAt || comment?.attributes?.createdAt;
-
   return (
     <section className="flex gap-sm">
       {comment?.attributes.author ? (

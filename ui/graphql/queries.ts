@@ -30,6 +30,7 @@ export const postsQuery = gql`
                 avatar {
                   data {
                     attributes {
+                      url
                       formats
                     }
                   }
@@ -62,6 +63,20 @@ export const postQuery = gql`
           slug
           content
           createdAt
+          post_like {
+            data {
+              attributes {
+                users {
+                  data {
+                    id
+                    attributes {
+                      username
+                    }
+                  }
+                }
+              }
+            }
+          }
           featuredimage {
             data {
               id
@@ -71,6 +86,7 @@ export const postQuery = gql`
               }
             }
           }
+
           author {
             data {
               id
@@ -103,15 +119,54 @@ export const postQuery = gql`
   }
 `;
 
-export const categoriesQuery = gql`
-  query categories {
-    categories {
+export const featuredPostsQuery = gql`
+  query featured {
+    featureds {
+      data {
+        attributes {
+          post {
+            data {
+              id
+              attributes {
+                description
+                title
+                content
+                slug
+                createdAt
+                featuredimage {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+                category {
+                  data {
+                    id
+                    attributes {
+                      name
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const childCategoriesQuery = gql`
+  query childCategories($id: ID!) {
+    categories(filters: { parentCategory: { id: { eq: $id } } }) {
       data {
         id
         attributes {
           name
           parentCategory {
             data {
+              id
               attributes {
                 name
               }
@@ -123,23 +178,21 @@ export const categoriesQuery = gql`
   }
 `;
 
-export const GET_CATEGORY = gql`
-  query GetCategory($categoryId: ID) {
-    category(id: $categoryId) {
+export const parentCategoriesQuery = gql`
+  query parentCategories {
+    categories(filters: { parentCategory: { id: { eq: null } } }) {
       data {
         id
         attributes {
           name
           parentCategory {
             data {
+              id
               attributes {
                 name
               }
             }
           }
-          createdAt
-          updatedAt
-          publishedAt
         }
       }
     }
@@ -173,6 +226,28 @@ export const commentsQuery = gql`
               }
             }
           }
+          post {
+            data {
+              id
+              attributes {
+                title
+              }
+            }
+          }
+          comment_like {
+            data {
+              attributes {
+                users {
+                  data {
+                    attributes {
+                      username
+                    }
+                  }
+                }
+              }
+            }
+          }
+
           author {
             data {
               id
@@ -221,6 +296,19 @@ export const parentCommentsQuery = gql`
               id
             }
           }
+          comment_like {
+            data {
+              attributes {
+                users {
+                  data {
+                    attributes {
+                      username
+                    }
+                  }
+                }
+              }
+            }
+          }
           content
           createdAt
           author {
@@ -239,6 +327,100 @@ export const parentCommentsQuery = gql`
             }
           }
         }
+      }
+    }
+  }
+`;
+
+export const postLikesQuery = gql`
+  query postLikes($id: ID!) {
+    likes(filters: { id: { eq: $id } }) {
+      data {
+        id
+        attributes {
+          users {
+            data {
+              attributes {
+                username
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+export const commentLikesQuery = gql`
+  query commentlikes($id: ID!) {
+    commentLikes(filters: { comment: { id: { eq: $id } } }) {
+      data {
+        id
+        attributes {
+          users {
+            data {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const userQuery = gql`
+  query user($id: ID!) {
+    usersPermissionsUsers(filters: { id: { eq: $id } }) {
+      data {
+        id
+        attributes {
+          createdAt
+          username
+          email
+          avatar {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+export const getFollowersQuery = gql`
+  query GetFollowers($userId: ID!) {
+    followers(filters: { followed_user: { id: { eq: $userId } } }) {
+      data {
+        attributes {
+          follower_user {
+            data {
+              id
+              attributes {
+                username
+                avatar {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const getFollowedUserEntryQuery = gql`
+  query GetFollowedUserEntry($followedUserId: ID!) {
+    usersPermissionsUsers(
+      filters: { followers: { followed_user: { id: { eq: $followedUserId } } } }
+    ) {
+      data {
+        id
       }
     }
   }

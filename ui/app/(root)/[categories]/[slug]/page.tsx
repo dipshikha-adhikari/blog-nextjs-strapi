@@ -11,8 +11,8 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import xss from "xss";
-import Author from "./author";
-import Comments from "./comments";
+import Author from "../../../../components/posts/author";
+import CommentsContainer from "@/components/posts/comments-container";
 
 const PostComponent = () => {
   const params = useParams();
@@ -56,9 +56,6 @@ const PostComponent = () => {
       style={{
         display: "grid",
         gap: "2rem",
-        "--max-width": "1000px",
-        marginLeft: "auto",
-        marginRight: "auto",
       }}
     >
       <section className="grid mx-auto gap-md">
@@ -89,7 +86,7 @@ const PostComponent = () => {
           }}
         />
       </section>
-      <Comments postId={post.id} />
+      <CommentsContainer post={post} />
     </Content>
   );
 };

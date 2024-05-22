@@ -1,39 +1,36 @@
-import Image from "next/image";
-import React from "react";
+import Link from "next/link";
+import Content from "./content";
+import Logo from "./logo";
 
 const Footer = () => {
   return (
-    <footer className="relative">
+    <>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 320"
-        className="  relative bottom-[-10px]  fill-gray-200 z-[-50] dark:fill-black-light "
+        className="  relative bottom-[-10px]  fill-primary-dark z-[-50]  "
       >
         <path d="M0,320L80,288C160,256,320,192,480,186.7C640,181,800,235,960,240C1120,245,1280,203,1360,181.3L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
       </svg>
 
-      <main className="max-w-[1400px]  bg-gray-200  dark:bg-black-light dark:text-white   grid gap-5 p-sm md:px-md xl:px-xl  mx-auto w-full ">
-        <section className="flex gap-sm items-center justify-around">
-          <Image
-            src={
-              "https://edublogs.org/files/2021/01/logo-small-e1610736484402.png"
-            }
-            alt="image"
-            width={50}
-            height={50}
-          />
-          <ul>
-            <li>link</li>
-            <li>link</li>
-            <li>link</li>
-            <li>link</li>
-          </ul>
-        </section>
-        <section className="grid place-items-center">
-          <code className="opacity-50"> 2024 Copyright@ MarkMyWords</code>
-        </section>
-      </main>
-    </footer>
+      <footer className=" bg-primary-dark ">
+        <Content>
+          <section className="flex  gap-sm items-center justify-around">
+            <Logo />
+            <ul className="grid gap-sm">
+              <Link href={"/explore"}>Explore</Link>
+              <Link href={"/profile"}>Profile</Link>
+            </ul>
+          </section>
+          <section className="grid pt-md place-items-center">
+            <p className="opacity-50 text-center">
+              {" "}
+              2024 Copyright @ Davenport
+            </p>
+          </section>
+        </Content>
+      </footer>
+    </>
   );
 };
 

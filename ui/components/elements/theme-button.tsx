@@ -6,16 +6,15 @@ const ThemeButton = () => {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="flex items-center">
-      <button
-        onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
-      >
-        {theme === "light" ? (
-          <RiMoonLine fontSize={30} />
-        ) : (
-          <RiSunLine fontSize={30} />
-        )}
-      </button>
+    <div
+      className="flex cursor-pointer items-center"
+      onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
+    >
+      {theme === "light" ? (
+        <RiMoonLine className="text-2xl" />
+      ) : (
+        <RiSunLine className="text-2xl" />
+      )}
     </div>
   );
 };

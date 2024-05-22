@@ -19,9 +19,9 @@ const config = {
     },
     extend: {
       colors: {
-        black: {
-          light: "#0a0a0a",
-          default: "#09090b",
+        "primary-dark": {
+          DEFAULT: "var(--dark-primary)",
+          foreground: "var(--dark-primary-foreground)",
         },
 
         border: "var(--border)",
@@ -74,6 +74,7 @@ const config = {
         sm: "1rem",
         md: "2rem",
         xl: "3rem",
+        "2xl": "4rem",
       },
       keyframes: {
         "accordion-down": {

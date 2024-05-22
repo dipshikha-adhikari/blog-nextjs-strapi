@@ -19,6 +19,9 @@
     --secondary: rgb(3, 119, 55);
     --secondary-foreground: 222.2 47.4% 11.2%;
 
+    --dark-primary: rgb(239, 243, 244);
+    --dark-primary-foreground: rgb(131, 131, 131);
+
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
@@ -38,7 +41,7 @@
 
   .dark {
     --background: #1b1b1b;
-    --foreground: rgb(243, 242, 242);
+    --foreground: rgb(220, 220, 220);
 
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
@@ -51,6 +54,9 @@
 
     --secondary: rgb(6, 226, 226);
     --secondary-foreground: 210 40% 98%;
+
+    --dark-primary: rgb(33, 33, 33);
+    --dark-primary-foreground: rgb(207, 207, 207);
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
@@ -76,4 +82,17 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+.explore:hover + .category-desktop,
+.category-desktop:hover {
+  display: block;
+}
+
+.category-mobile {
+  scrollbar-width: 0;
+}
+
+.category-mobile::-webkit-scrollbar {
+  display: none;
 }

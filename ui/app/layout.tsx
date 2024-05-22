@@ -21,16 +21,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className}>
         <ApolloWrapper>
           <ThemeProvider attribute="class" defaultTheme="class" enableSystem>
             <Toaster />
             <Navbar />
 
-            <div className="min-h-[80vh] max-w-[1400px] mx-auto">
-              {children}
-            </div>
+            <div className="min-h-[80vh]">{children}</div>
             <Footer />
           </ThemeProvider>
         </ApolloWrapper>

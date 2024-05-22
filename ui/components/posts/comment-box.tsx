@@ -9,7 +9,7 @@ import { IComment } from "@/types";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Button } from "../../../../components/ui/button";
+import { Button } from "../ui/button";
 
 interface Props {
   comment: IComment | null;

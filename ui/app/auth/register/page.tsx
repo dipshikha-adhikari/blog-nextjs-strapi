@@ -1,10 +1,8 @@
 "use client";
-import { useRouter } from "next/navigation";
-import React from "react";
-import Cookies from "js-cookie";
-import Content from "@/components/layout/content";
-import Link from "next/link";
 import { RegistrationForm } from "@/components/auth/register";
+import Cookies from "js-cookie";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const user = Cookies.get("username");
@@ -13,13 +11,7 @@ const Page = () => {
     router.push("/");
   }
   return (
-    <Content
-      style={{
-        "--max-width": "500px",
-        border: "1px solid var(--border)",
-        margin: "1rem auto",
-      }}
-    >
+    <div>
       <header className="pb-sm text-center uppercase">Register</header>
       <RegistrationForm />
       <div className="py-sm flex gap-sm items-center">
@@ -28,7 +20,7 @@ const Page = () => {
           Login
         </Link>
       </div>
-    </Content>
+    </div>
   );
 };
 
