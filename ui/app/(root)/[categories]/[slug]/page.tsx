@@ -13,10 +13,12 @@ import { useEffect, useState } from "react";
 import xss from "xss";
 import Author from "../../../../components/posts/author";
 import CommentsContainer from "@/components/posts/comments-container";
+import PostsWithCategory from "@/components/posts/posts-with-category";
 
 const PostComponent = () => {
   const params = useParams();
-  const slug = params.slug;
+  const slugWithCharacter: any = params?.slug;
+  const slug = decodeURIComponent(slugWithCharacter);
   const [coverImg, setCoverImg] = useState<string | null>("");
   const [isClient, setIsClient] = useState(false);
 
@@ -50,6 +52,8 @@ const PostComponent = () => {
   if (!isClient) return <Content>Loading...</Content>;
 
   if (error) return <ErrorPage />;
+
+  if (!post) return <PostsWithCategory category={slug} />;
 
   return (
     <Content

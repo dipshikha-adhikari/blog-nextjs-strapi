@@ -24,7 +24,10 @@ const Page = async () => {
   return (
     <div className="">
       <Hero />
-      <section className="grid gap-md lg:flex ">
+      <section
+        id="explore-section"
+        className="grid scroll-smooth gap-md lg:flex "
+      >
         <Content style={{ paddingTop: "4rem", flex: "2" }}>
           <section className="grid  h-fit gap-xl">
             <header className=" flex items-center text-xl gap-xs font-bold">
@@ -41,13 +44,7 @@ const Page = async () => {
             flex: "1",
           }}
         >
-          <section className="  grid gap-xl   ">
-            <header className=" flex items-center text-xl gap-xs font-bold">
-              <IoMdTrendingUp className="border-2 border-secondary text-secondary" />
-              Most Liked
-            </header>
-            <MostLikedPosts posts={posts} />
-          </section>
+          <MostLikedPosts posts={posts} />
         </Content>
       </section>
     </div>

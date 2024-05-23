@@ -6,19 +6,17 @@ import { childCategoriesQuery } from "@/graphql/queries";
 
 const CategoriesDesktop = ({ categories }: { categories: ICategory[] }) => {
   return (
-    <div className="absolute hidden w-full top-[10vh] bg-primary-dark p-sm left-0  category-desktop">
-      <div className="grid grid-cols-3 gap-xl">
-        {categories.map((item) => {
-          return (
-            <div key={item.id} className="h-fit">
-              <CategoryItem category={item} />
-              <ChildCategories
-                parentId={item.id}
-                parentName={item.attributes.name}
-              />
-            </div>
-          );
-        })}
+    <div className="absolute hidden w-full top-[10vh] bg-primary-dark p-sm left-0 category-desktop">
+      <div className="columns-3  ">
+        {categories.map((item) => (
+          <div key={item.id} className=" break-inside-avoid pt-sm ">
+            <CategoryItem category={item} />
+            <ChildCategories
+              parentId={item.id}
+              parentName={item.attributes.name}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -28,7 +26,10 @@ export default CategoriesDesktop;
 
 const CategoryItem = ({ category }: { category: ICategory }) => {
   return (
-    <Link href={`/${category.attributes.name}`} className="w-fit font-bold ">
+    <Link
+      href={`/${category.attributes.name}`}
+      className="w-fit font-bold hover:text-secondary "
+    >
       {category.attributes.name}
     </Link>
   );
@@ -57,7 +58,10 @@ const ChildCategories = ({
       {data.categories.data.map((item) => {
         return (
           <div key={item.id}>
-            <Link href={`/${parentName}/${item?.attributes?.name}`}>
+            <Link
+              href={`/${parentName}/${item.attributes.name}`}
+              className=" hover:text-secondary"
+            >
               {item.attributes.name}
             </Link>
             <ChildCategories

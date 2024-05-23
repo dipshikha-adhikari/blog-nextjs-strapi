@@ -119,6 +119,58 @@ export const postQuery = gql`
   }
 `;
 
+export const postsWithCategoryQuery = gql`
+  query posts($category: String!) {
+    posts(filters: { category: { name: { eq: $category } } }) {
+      data {
+        id
+        attributes {
+          description
+          title
+          slug
+          content
+          createdAt
+          featuredimage {
+            data {
+              id
+              attributes {
+                caption
+                url
+              }
+            }
+          }
+          author {
+            data {
+              id
+              attributes {
+                username
+                email
+                bio
+                avatar {
+                  data {
+                    attributes {
+                      url
+                      formats
+                    }
+                  }
+                }
+              }
+            }
+          }
+          category {
+            data {
+              id
+              attributes {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const featuredPostsQuery = gql`
   query featured {
     featureds {

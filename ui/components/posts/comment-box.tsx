@@ -103,10 +103,7 @@ const CommentBox = ({
       updateComment({
         variables: { ...variables, id: comment?.id },
       });
-    }
-
-    if (mutationType === "create") {
-      //Set the parentComment to the comment we are replying
+    } else {
       await createComment({
         variables: { ...variables, parentComment: comment?.id },
       });

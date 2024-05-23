@@ -25,7 +25,10 @@ const CategoryItem = ({ category }: { category: ICategory }) => {
       className={`${category.attributes.parentCategory?.data?.id ? "font-normal" : "font-bold"} pt-2`}
     >
       <div className="flex items-center cursor-pointer w-fit gap-xl hover:text-secondary">
-        <Link href={`/tag/${category.attributes.name}`} onClick={handleLink}>
+        <Link
+          href={`/${category.attributes.parentCategory.data?.attributes.name ? category.attributes.parentCategory?.data?.attributes.name + `/${category.attributes.name}` : category.attributes.name}`}
+          onClick={handleLink}
+        >
           {category.attributes.name}
         </Link>
         <div

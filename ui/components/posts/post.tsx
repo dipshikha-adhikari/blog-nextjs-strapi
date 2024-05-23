@@ -9,7 +9,7 @@ interface Post {
   post: IPost;
 }
 
-const Post = async ({ post }: Post) => {
+const Post = ({ post }: Post) => {
   const coverImageSrc = post.attributes.featuredimage.data.attributes.url;
   const { url: coverImageUrl } = imageReducer(coverImageSrc);
 
