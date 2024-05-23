@@ -45,6 +45,18 @@
     },
     "description": {
       "type": "text"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "post"
+    },
+    "post_like": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::like.like",
+      "mappedBy": "post_id"
     }
   }
 }

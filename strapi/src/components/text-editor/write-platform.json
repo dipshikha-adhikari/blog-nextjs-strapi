@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_text_editor_write_platforms",
+  "info": {
+    "displayName": "WritePlatform"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "blocks"
+    }
+  }
+}

@@ -77,6 +77,18 @@
       ],
       "type": "media",
       "multiple": false
+    },
+    "followers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::follower.follower",
+      "mappedBy": "followed_user"
+    },
+    "comment_like": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::comment-like.comment-like",
+      "inversedBy": "users"
     }
   }
 }
