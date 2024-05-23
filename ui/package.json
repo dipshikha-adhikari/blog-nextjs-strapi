@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --write */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
-    "prepare": "cd .. && husky install ui/.husky"
+    "prepare": "[ \"$NODE_ENV\" != \"production\" ] && husky install ui/.husky || exit 0"
   },
   "dependencies": {
     "@apollo/client": "^3.10.1",
